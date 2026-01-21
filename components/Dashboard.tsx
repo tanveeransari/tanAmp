@@ -85,7 +85,7 @@ export default function Dashboard({ files }: DashboardProps) {
 
       {currentFile && (
         <div className="fixed bottom-0 left-0 right-0 z-50 shadow-2xl animate-slide-up">
-          <Player file={currentFile} key={currentFile.filename} />
+          <Player file={currentFile} />
         </div>
       )}
     </div>

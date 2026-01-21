@@ -15,7 +15,6 @@ export default function Player({ file }: PlayerProps) {
 
   useEffect(() => {
     // Reset state when file changes
-    setIsPlaying(true);
     setCurrentTime(0);
     if (mediaRef.current) {
       mediaRef.current.currentTime = 0;
@@ -86,6 +85,8 @@ export default function Player({ file }: PlayerProps) {
             onTimeUpdate={handleTimeUpdate}
             onLoadedMetadata={handleLoadedMetadata}
             onEnded={() => setIsPlaying(false)}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
             onClick={togglePlay}
           />
         </div>
@@ -98,6 +99,8 @@ export default function Player({ file }: PlayerProps) {
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={() => setIsPlaying(false)}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
           autoPlay
         />
       )}
