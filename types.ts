@@ -8,4 +8,6 @@ export interface MediaFile {
   artist?: string;
   album?: string;
   title?: string;
+  coverUrl?: string;
+  isbn?: string;
 }

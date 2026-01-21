@@ -149,9 +149,14 @@ export default function Player({ file }: PlayerProps) {
             </button>
           </div>
 
-          <div className="text-center mt-2">
-            <h3 className="text-sm font-medium text-slate-200 truncate">{file.title}</h3>
-            <p className="text-xs text-slate-500 truncate">{file.artist}</p>
+          <div className="flex items-center gap-3 mt-2">
+            {file.coverUrl && (
+              <img src={file.coverUrl} alt={file.title} className="w-12 h-12 rounded object-cover shadow-lg" />
+            )}
+            <div className="text-left flex-1 min-w-0">
+              <h3 className="text-sm font-medium text-slate-200 truncate">{file.title}</h3>
+              <p className="text-xs text-slate-500 truncate">{file.artist}</p>
+            </div>
           </div>
         </div>
       </div>

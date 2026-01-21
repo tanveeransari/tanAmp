@@ -51,9 +51,18 @@ export async function GET(request: NextRequest) {
     const stream = new ReadableStream({
       start(controller) {
         fileStream.on("data", (chunk) => controller.enqueue(chunk));
-        fileStream.on("end", () => controller.close());
-        fileStream.on("error", (err) => controller.error(err));
+        fileStream.on("end", () => {
+          controller.close();
+          fileStream.destroy();
+        });
+        fileStream.on("error", (err) => {
+          controller.error(err);
+          fileStream.destroy();
+        });
       },
+      cancel() {
+        fileStream.destroy();
+      }
     });
 
     const headers = {
@@ -73,9 +82,18 @@ export async function GET(request: NextRequest) {
     const stream = new ReadableStream({
       start(controller) {
         fileStream.on("data", (chunk) => controller.enqueue(chunk));
-        fileStream.on("end", () => controller.close());
-        fileStream.on("error", (err) => controller.error(err));
+        fileStream.on("end", () => {
+          controller.close();
+          fileStream.destroy();
+        });
+        fileStream.on("error", (err) => {
+          controller.error(err);
+          fileStream.destroy();
+        });
       },
+      cancel() {
+        fileStream.destroy();
+      }
     });
     return new NextResponse(stream, { status: 200, headers });
   }

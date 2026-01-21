@@ -56,10 +56,14 @@ export default function Dashboard({ files }: DashboardProps) {
                   <div className="flex items-start gap-4">
                     <div
                       className={`
-                        w-16 h-16 rounded flex items-center justify-center shrink-0 
+                        w-16 h-16 rounded flex items-center justify-center shrink-0 overflow-hidden
                         ${currentFile?.filename === file.filename ? "bg-orange-500/10 text-orange-500" : "bg-slate-800 text-slate-500 group-hover:text-slate-400"}
                     `}>
-                      {file.type === "video" ? <FileVideo size={32} /> : <FileAudio size={32} />}
+                      {file.coverUrl ? (
+                        <img src={file.coverUrl} alt={file.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <>{file.type === "video" ? <FileVideo size={32} /> : <FileAudio size={32} />}</>
+                      )}
                     </div>
                     <div className="overflow-hidden flex-1 min-w-0">
                       <h3
